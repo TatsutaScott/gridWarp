@@ -1,11 +1,32 @@
 //LOL fake jquery
 const $ = (id) => document.getElementById(id);
 
+//object holding state values
+const state = {
+    looping: null,
+    settingOnOff: true
+}
+
 //buttons
 const randB = document.getElementById('random');
-$('randPalette').addEventListener('click', () => { S.palette = Palette.coolorPalette(urls[Math.floor(Math.random() * urls.length)]) });
-const fullRenderB = document.getElementById('fullRender');
-const loopRenderB = document.getElementById('loopRender');
+$('randPalette').addEventListener('click', () => { S.palette = new Palette(urls[Math.floor(Math.random() * urls.length)]) });
+$('fullRender').addEventListener('click', () => {
+    setup();
+    draw();
+});
+$('loopRender').addEventListener('click', (e) => {
+    if (state.looping) {
+        clearInterval(state.looping);
+        state.looping = null;
+        e.target.innerHTML = 'Loop render';
+        $('fullRender').style.display = 'visible';
+    } else {
+        setup();
+        state.looping = setInterval(draw);
+        e.target.innerHTML = 'Stop looping';
+        $('fullRender').style.visibility = 'hidden';
+    }
+});
 $('download').addEventListener('click', function (e) {
     const date = new Date();
     const link = document.createElement('a');
@@ -36,10 +57,9 @@ for (let i = 0; i < easing.length; i++) {
 }
 
 //hide and drag options ui
-let settingOnOff = true;
 $('hide').addEventListener('click', () => {
-    settingOnOff = !settingOnOff;
-    let display = settingOnOff ? 'block' : 'none';
+    state.settingOnOff = !state.settingOnOff;
+    let display = state.settingOnOff ? 'block' : 'none';
     $('options').style.display = display;
 });
 

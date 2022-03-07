@@ -42,6 +42,7 @@ button{
     display: inline-block;
     font-family: inherit;
     font-size: 10pt;
+    cursor: pointer;
 }
 
 /* Special styling for WebKit/Blink */
