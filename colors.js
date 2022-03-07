@@ -5,12 +5,12 @@ class Palette {
         }
         if (Array.isArray(a)) {
             this.colors = a;
-            this.weighted = randomWeights(a);
+            this.weighted = randomizeWeighting(a);
         }
         if (typeof (a) == 'string') {
             let colorsArray = Palette.coolorPalette(a);
             this.colors = colorsArray;
-            this.weighted = randomWeights(colorsArray);
+            this.weighted = randomizeWeighting(colorsArray);
         }
     }
 
@@ -36,6 +36,11 @@ class Palette {
         return c3;
     }
 
+    print() {
+        for (let c of this.colors) {
+            console.log(c)
+        }
+    }
     addColor(color) {
         this.colors.push(color);
         this.weighted = randomWeights(this.colors);

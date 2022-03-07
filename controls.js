@@ -1,70 +1,53 @@
-const settingsDiv = document.getElementById('options');
+//LOL fake jquery
+const $ = (id) => document.getElementById(id);
 
-const hideB = document.getElementById('hide');
+//buttons
 const randB = document.getElementById('random');
-const randPaletteB = document.getElementById('randPalette');
+$('randPalette').addEventListener('click', () => { S.palette = Palette.coolorPalette(urls[Math.floor(Math.random() * urls.length)]) });
 const fullRenderB = document.getElementById('fullRender');
 const loopRenderB = document.getElementById('loopRender');
-const downloadB = document.getElementById('download');
-
-const widthSlider = document.getElementById('width');
-const heightSlider = document.getElementById('height');
-const colSlider = document.getElementById('cols');
-const rowSlider = document.getElementById('rows');
-const nDetailSlider = document.getElementById('nDetail');
-const pointSlider = document.getElementById('points');
-const xScaleSlider = document.getElementById('xScale');
-const yScaleSlider = document.getElementById('yScale');
-const noiseScaleSlider = document.getElementById('noiseScale');
-const easeSelect = document.getElementById('ease');
-let settingOnOff = true;
-
-
-for (let i = 0; i < easing.length; i++) {
-    var opt = document.createElement("option");
-    opt.value = i;
-    opt.innerHTML = easing[i].name;
-    easeSelect.appendChild(opt);
-}
-
-
-
-widthSlider.addEventListener('change', () => { S.width = widthSlider.value; });
-heightSlider.addEventListener('change', () => { S.height = heightSlider.value; });
-colSlider.addEventListener('change', () => { S.cols = colSlider.value; });
-rowSlider.addEventListener('change', () => { S.rows = rowSlider.value; });
-nDetailSlider.addEventListener('change', () => { S.noiseDetail = nDetailSlider.value; });
-pointSlider.addEventListener('change', () => { S.pointRatio = pointSlider.value; });
-xScaleSlider.addEventListener('change', () => { S.xScale = xScaleSlider.value; });
-yScaleSlider.addEventListener('change', () => { S.yScale = yScaleSlider.value; });
-noiseScaleSlider.addEventListener('change', () => { S.noiseScale = noiseScaleSlider.value; });
-easeSelect.addEventListener('change', () => { S.ease = easing[easeSelect.value] });
-hideB.addEventListener('click', () => {
-    settingOnOff = !settingOnOff;
-    let vis = settingOnOff ? 'visible' : 'hidden';
-    settingsDiv.style.visibility = vis;
-});
-
-downloadB.addEventListener('click', function (e) {
+$('download').addEventListener('click', function (e) {
     const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDay();
-
     const link = document.createElement('a');
-    link.download = `${year}.${month}.${day}_grid.png`;
+    link.download = `${date.getFullYear()}.${date.getMonth()}.${date.getDay()}_grid.png`;
     link.href = canvas.toDataURL();
     link.click();
     link.delete;
 });
 
-draw();
+//sliders
+$('width').addEventListener('change', (e) => { S.width = e.target.value; });
+$('height').addEventListener('change', (e) => { S.height = e.target.value; });
+$('cols').addEventListener('change', (e) => { S.cols = e.target.value; });
+$('rows').addEventListener('change', (e) => { S.rows = e.target.value; });
+$('noiseDetail').addEventListener('change', (e) => { S.noiseDetail = e.target.value; });
+$('points').addEventListener('change', (e) => { S.pointRatio = e.target.value; });
+$('xScale').addEventListener('change', (e) => { S.xScale = e.target.value; });
+$('yScale').addEventListener('change', (e) => { S.yScale = e.target.value; });
+$('noiseScale').addEventListener('change', (e) => { S.noiseScale = e.target.value; });
+$('ease').addEventListener('change', (e) => { S.ease = easing[e.target.value] });
 
-dragElement(document.getElementById('settings'));
+//adding easing options
+for (let i = 0; i < easing.length; i++) {
+    var opt = document.createElement("option");
+    opt.value = i;
+    opt.innerHTML = easing[i].name;
+    $('ease').appendChild(opt);
+}
+
+//hide and drag options ui
+let settingOnOff = true;
+$('hide').addEventListener('click', () => {
+    settingOnOff = !settingOnOff;
+    let display = settingOnOff ? 'block' : 'none';
+    $('options').style.display = display;
+});
+
+dragElement($('settings'));
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    if ($(elmnt.id + "header")) {
+        $(elmnt.id + "header").onmousedown = dragMouseDown;
     } else {
         elmnt.onmousedown = dragMouseDown;
     }

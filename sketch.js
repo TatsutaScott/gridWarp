@@ -1,7 +1,6 @@
 const canvas = document.getElementById('canvas');
 const c = canvas.getContext('2d');
 
-
 //settings object
 const S = {
     width: 800,
@@ -14,11 +13,10 @@ const S = {
     xScale: 1,
     noiseScale: 50,
     noiseSeed: Math.floor(Math.random() * 9999),
-    palette: Palette.coolorPalette(urls[Math.floor(Math.random() * urls.length)]),
+    palette: new Palette(urls[Math.floor(Math.random() * urls.length)]),
     ease: easing[Math.floor(Math.random() * easing.length)]
 }
 S.noise = tooloud.Perlin.create(S.noiseSeed);
-
 let grid = [];
 
 function draw() {
@@ -37,7 +35,7 @@ function draw() {
 
         for (let j = 0; j < S.rows; j++) {
             let y = j * gridHeight;
-            grid.push(new GridSquare(x, y, gridWidth, gridHeight));
+            grid.push(new GridSquare(x, y, gridWidth, gridHeight, S.palette.weightedRandom()));
         }
     }
 
@@ -45,3 +43,5 @@ function draw() {
         g.draw(10000, S);
     }
 }
+
+draw();
