@@ -1,0 +1,75 @@
+#settings{
+    position:absolute;
+    top: 0; 
+    left: 0;
+    padding: 1em;
+    font-family: monospace;
+}
+
+#options{
+    top: 0; 
+    left: 0;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 5px;
+    border:1pt solid rgb(0, 0, 0);
+}
+
+.formElement{
+    padding-bottom: 0.25em;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+canvas{
+    margin: auto;
+}
+
+button{
+    background-color: rgba(255,255, 255, 0.5);
+    border:1pt solid rgb(0, 0, 0);
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 0.3em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 10pt;
+}
+
+/* Special styling for WebKit/Blink */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 200px; /* Full-width */
+  height: 1px; /* Specified height */
+  background: #000000; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: #000000; /* Green background */
+  border-radius: 50%;
+  cursor: pointer; /* Cursor on hover */
+}
+
+
+#ease{
+    font-family: inherit;
+}

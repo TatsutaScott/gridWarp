@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="settings">
+        <div id="settingsheader">
+            <button id="hide">&#10006;</button>
+        </div>
+        <div id='options'>
+            <div class="formElement">
+                <label for="width">Width:</label>
+                <output>800</output>
+                <input type="range" min="400" max="8000" value="800" class="slider" name="width" id="width"
+                    oninput="this.previousElementSibling.value = this.value" step="100">
+
+            </div>
+            <div class="formElement">
+                <label for="height">Height:</label>
+                <output>800</output>
+                <input type="range" min="400" max="8000" value="800" class="slider" name="height" id="height"
+                    oninput="this.previousElementSibling.value = this.value" step="100">
+            </div>
+            <div class="formElement">
+                <label for="Rows">Rows:</label>
+                <output>8</output>
+                <input type="range" min="1" max="100" value="8" class="slider" name="rows" id="rows"
+                    oninput="this.previousElementSibling.value = this.value">
+            </div>
+
+            <div class="formElement">
+                <label for="Columns">Columns:</label>
+                <output>8</output>
+                <input type="range" min="1" max="100" value="8" class="slider" name="cols" id="cols"
+                    oninput="this.previousElementSibling.value = this.value">
+            </div>
+
+            <div class="formElement">
+                <label for="nDetail">Noise Detail:</label>
+                <output>2</output>
+                <input type="range" min="0.25" max="10" value="2" class="slider" name="nDetail" id="nDetail"
+                    oninput="this.previousElementSibling.value = this.value" step="0.1">
+            </div>
+
+            <div class="formElement">
+                <label for="points">Points Ratio:</label>
+                <output>1</output>
+                <input type="range" min="1" max="10" value="1" class="slider" name="points" id="points"
+                    oninput="this.previousElementSibling.value = this.value" step="0.1">
+            </div>
+
+            <div class="formElement">
+                <label for="ppf">Points per Frame:</label>
+                <output>1000</output>
+                <input type="range" min="100" max="10000" value="1000" class="slider" name="ppf" id="ppf"
+                    oninput="this.previousElementSibling.value = this.value" step="1">
+            </div>
+
+            <div class="formElement">
+                <label for="xScale">x Scale:</label>
+                <output>1</output>
+                <input type="range" min="0" max="2" value="1" class="slider" name="xScale" id="xScale"
+                    oninput="this.previousElementSibling.value = this.value" step="0.1">
+            </div>
+
+            <div class="formElement">
+                <label for="yScale">y Scale:</label>
+                <output>1</output>
+                <input type="range" min="0" max="2" value="1" class="slider" name="yScale" id="yScale"
+                    oninput="this.previousElementSibling.value = this.value" step="0.1">
+            </div>
+
+            <div class="formElement">
+                <label for="noiseScale">Noise Scale:</label>
+                <output>0.25</output>
+                <input type="range" min="0" max="2" value="0.25" class="slider" name="noiseScale" id="noiseScale"
+                    oninput="this.previousElementSibling.value = this.value" step="0.1">
+            </div>
+
+            <div class="formElement">
+                <label for="easeFunction">Easing Function</label>
+                <select name="easeFunction" id="ease"></select>
+            </div>
+            <div class="formElement">
+                <label for="seed">Seed</label>
+                <input name="seed" id="seed" type="number" min="0" max="10000"></input>
+            </div>
+            <button type="button" id="random">Randomize</button>
+            <button type="button" id="randP">New palette</button>
+            <button type="button" id="fullRender">Full Render</button>
+            <button type="button" id="loopRender">Loop Render</button>
+            <button type="button" id="download">Download</button>
+        </div>
+    </div>
+    <script src="easing.js"></script>
+    <script src="vector.js"></script>
+    <script src="colors.js"></script>
+    <script src="tooloud.js"></script>
+    <script src="grid.js"></script>
+    <script src="sketch.js"></script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
