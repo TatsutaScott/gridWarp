@@ -22,12 +22,12 @@ let settingOnOff = true;
 for (let i = 0; i < easing.length; i++) {
     var opt = document.createElement("option");
     opt.value = i;
-    opt.innerHTML = easing[i].name; // whatever property it has
-    // then append it to the select element
+    opt.innerHTML = easing[i].name;
     easeSelect.appendChild(opt);
 }
 
-let S = {
+//settings object
+const S = {
     width: 800,
     height: 800,
     cols: 4,
@@ -49,13 +49,12 @@ function draw() {
     canvas.width = S.width;
     canvas.height = S.height;
 
-
     bg(255, 255, 255);
 
     const totalPoints = S.width * S.height * S.pointRatio;
     const gridWidth = S.width / S.cols;
     const gridHeight = S.height / S.rows;
-    const ppg = Math.round(totalPoints / (S.cols * S.rows));
+    // const ppg = Math.round(totalPoints / (S.cols * S.rows));
 
     for (let i = 0; i < S.cols; i++) {
         let x = i * gridWidth;
@@ -69,37 +68,6 @@ function draw() {
     for (let g of grid) {
         g.draw(10000, S);
     }
-    // for (let i = 0; i < S.cols; i++) {
-    //     let x = i * gridWidth;
-
-    //     for (let j = 0; j < S.rows; j++) {
-    //         let y = j * gridHeight;
-
-    //         c.strokeStyle = S.palette[Math.floor(Math.random() * S.palette.length)];
-
-    //         for (let q = 0; q < ppg; q++) {
-    //             const pos = new Vec(x, y);
-
-    //             const randomOffset = new Vec(
-    //                 Math.random() * (gridWidth * S.xScale),
-    //                 Math.random() * (gridHeight * S.yScale)
-    //             );
-
-    //             pos.add(randomOffset);
-    //             const theta = S.ease(n.noise(pos.x / (S.width / S.noiseDetail), pos.y / (S.height / S.noiseDetail), 0)) * Math.PI * 2;
-    //             const nOff = Vec.fromAngle(theta).mult(Math.random() * theta * S.noiseScale);
-
-    //             pos.add(nOff);
-    //             pos.draw();
-    //         }
-    //     }
-    // }
-}
-
-
-function bg(r, g, b) {
-    c.fillStyle = `rgb(${r}, ${g}, ${b})`;
-    c.fillRect(0, 0, S.width, S.height);
 }
 
 widthSlider.addEventListener('change', () => { S.width = widthSlider.value; });
@@ -119,62 +87,50 @@ hideButton.addEventListener('click', () => {
 });
 
 download.addEventListener('click', function (e) {
-    const link = document.createElement('a');
-    link.download = downloadTitle();
-    link.href = canvas.toDataURL();
-    link.click();
-    link.delete;
-});
-
-function downloadTitle() {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDay();
 
-    return `${year}.${month}.${day}_grid.png`
-}
+    const link = document.createElement('a');
+    link.download = `${year}.${month}.${day}_grid.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+    link.delete;
+});
 
 draw();
 
-dragElement(document.getElementById("settings"));
-
+dragElement(document.getElementById('settings'));
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "header")) {
-        // if present, the header is where you move the DIV from:
         document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
     } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
         elmnt.onmousedown = dragMouseDown;
     }
 
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
-        // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
     }
 
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // calculate the new cursor position:
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // set the element's new position:
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
 
     function closeDragElement() {
-        // stop moving when mouse button is released:
         document.onmouseup = null;
         document.onmousemove = null;
     }

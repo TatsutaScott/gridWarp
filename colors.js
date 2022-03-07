@@ -76,60 +76,11 @@ function hexToRGB(hex) {
     return rgb;
 }
 
-
-
-// // returns an color based on interpolating between colors in a quantized color palette
-// function paletteLerp(palette, n) {
-//     n = constrain(n, 0, 1);
-//     let index = floor(n * (palette.length - 1));
-//     let interp = (n * (palette.length - 1)) - index;
-//     let c;
-//     if (index == palette.length - 1) {
-//         c = palette[palette.length - 1]
-//     } else {
-//         c = lerpColor(palette[index], palette[index + 1], interp)
-//     }
-//     return c;
-// }
-
-// //--------------------------TRIGONOMETRIC PALETTES--------------------------//
-
-// // create a quantized trigonometrically defined palette from input parameter object
-// function createTrigPalette(params, divisions) {
-//     const palette = [];
-//     for (let i = 0; i < divisions; i++) {
-//         let newColor = [];
-//         let t = i * (1 / divisions);
-//         for (let q = 0; q < 3; q++) {
-//             newColor[q] = (params.a[q] + params.b[q] * cos(TAU * (params.c[q] * t + params.d[q]))) * 255;
-//         }
-//         palette.push(color(newColor[0], newColor[1], newColor[2]));
-//     }
-
-//     return palette;
-// }
-
-// // create a quantized trigonometrically defined palette from randomized parameter object
-// function randomTrigPalette(divisions) {
-//     const params = {
-//         a: [random(), random(), random()],
-//         b: [random(), random(), random()],
-//         c: [random(), random(), random()],
-//         d: [random(), random(), random()]
-//     };
-
-//     return createTrigPalette(params, divisions);
-// }
-
-// // return individual color from a non quantized trigonometrically defined palette
-// function trigColor(params, t) {
-//     let newColor = [];
-//     for (let q = 0; q < 3; q++) {
-//         newColor[q] = (params.a[q] + params.b[q] * cos(TAU * (params.c[q] * t + params.d[q]))) * 255;
-//     }
-//     return color(newColor[0], newColor[1], newColor[2]);
-// }
-
+//Utility functions 
+function bg(r, g, b) {
+    c.fillStyle = `rgb(${r}, ${g}, ${b})`;
+    c.fillRect(0, 0, S.width, S.height);
+}
 
 // //--------------------------USEFUL VARBIABLES--------------------------//
 // //list of selected Coolerp palettes
