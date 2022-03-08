@@ -8,7 +8,19 @@ const state = {
 }
 
 //buttons
-const randB = document.getElementById('random');
+$('random').addEventListener('click', () => {
+    S.cols = Math.floor(Math.random() * 100) + 1;
+    S.rows = Math.floor(Math.random() * 100) + 1;
+    S.noiseDetail = (Math.random() * 8) + 0.25;
+    S.xScale = Math.random() * 2;
+    S.yScale = Math.random() * 2;
+    S.noiseScale = Math.random() * 2;
+    S.ease = easing[Math.floor(Math.random() * easing.length)];
+    S.noiseSeed = Math.floor(Math.random() * 9999);
+    S.noise = tooloud.Perlin.create(S.noiseSeed);
+    S.palette = new Palette(urls[Math.floor(Math.random() * urls.length)]);
+    updateAll();
+});
 $('randPalette').addEventListener('click', () => { S.palette = new Palette(urls[Math.floor(Math.random() * urls.length)]) });
 $('fullRender').addEventListener('click', () => {
     setup();
@@ -97,3 +109,20 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 }
+
+function updateSetting(id, value) {
+    $(id).value = value;
+    $(id).previousElementSibling.value = Number.isInteger(value) ? value : value.toFixed(2);
+}
+
+function updateAll() {
+    updateSetting('cols', S.cols);
+    updateSetting('rows', S.rows);
+    updateSetting('noiseDetail', S.noiseDetail);
+    updateSetting('xScale', S.xScale);
+    updateSetting('yScale', S.yScale);
+    updateSetting('noiseScale', S.noiseScale);
+    updateSetting('seed', S.noiseSeed);
+    updateSetting('ease', easing.findIndex(e => e == S.ease));
+}
+

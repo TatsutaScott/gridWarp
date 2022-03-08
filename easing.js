@@ -108,7 +108,7 @@ let easeInOutBounce = (x) => {
         return (1 + outBounce(2 * x - 1)) / 2;
     }
 };
-let easing = [
+const easing = [
     linear,
     inQuad,
     outQuad,

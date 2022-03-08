@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 const c = canvas.getContext('2d');
 
 //settings object
-const S = {
+let S = {
     width: 800,
     height: 800,
     cols: 4,
