@@ -42,6 +42,7 @@ function setup() {
 function draw(looping) {
     const totalPoints = looping ? S.ppf : S.width * S.height * S.pointRatio;
     const ppg = Math.round(totalPoints / (S.cols * S.rows)) + 1; //points per grid
+    console.log(ppg)
     for (let g of grid) {
         g.draw(ppg, S);
     }

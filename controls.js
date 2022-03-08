@@ -6,6 +6,7 @@ const state = {
     looping: null,
     settingOnOff: true
 }
+updateAll();
 
 //buttons
 $('random').addEventListener('click', () => {
@@ -34,7 +35,7 @@ $('loopRender').addEventListener('click', (e) => {
         $('fullRender').style.display = 'visible';
     } else {
         setup();
-        state.looping = setInterval(draw);
+        state.looping = setInterval(() => { draw(true) });
         e.target.innerHTML = 'Stop looping';
         $('fullRender').style.visibility = 'hidden';
     }
