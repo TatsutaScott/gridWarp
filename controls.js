@@ -32,7 +32,7 @@ $('loopRender').addEventListener('click', (e) => {
         clearInterval(state.looping);
         state.looping = null;
         e.target.innerHTML = 'Loop render';
-        $('fullRender').style.display = 'visible';
+        $('fullRender').style.visibility = 'visible';
     } else {
         setup();
         state.looping = setInterval(() => { draw(true) });
